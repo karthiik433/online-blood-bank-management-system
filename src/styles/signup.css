@@ -1,0 +1,46 @@
+
+* {
+    background-image: url("https://jnj-content-lab.brightspotcdn.com/dims4/default/0fba69d/2147483647/strip/true/crop/1000x463+0+102/resize/1440x666!/quality/90/?url=http%3A%2F%2Fjnj-brightspot.s3.amazonaws.com%2Fba%2F7a%2F1a1da0404ec2bf8a21e270178fd0%2Fshutterstock-294174608-1-copy.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+
+.btn {
+    padding: 5px 20px;
+    background-color: rgb(255, 196, 0);
+    border-radius: 10px;
+    margin-right: 70px !important;
+    margin-top: 20px !important;
+}
+
+input{
+    padding: 20px;
+    border-radius: 10px;
+    /* margin-right: 100px !important; */
+    margin-top: 20px !important;
+    background-color: red;
+    
+}
+form {
+    display: flex;
+    flex-flow: column wrap;
+    /* justify-content: space-between; */
+    align-items: flex-end;
+    
+}
+
+
+/* #firstName,#lastName {
+    background-color: rgb(51, 255, 228);
+    
+}
+#password,#mail {
+    background-color: rgb(137, 174, 230);
+} */
