@@ -3,9 +3,9 @@ import "./../styles/signup.css";
 
 function SignUp(props){
     return(
-        <div>
+        <div className="page">
         <h1>A single pint can save three lives, a single gesture can create a million smiles</h1>
-        <form>
+        <form className="signUpForm">
             <input type="text" placeholder="First Name" id="firstName" ></input>
             <input type="text" placeholder="Last Name" className="rightSideInputs" id="lastName" ></input>
             <input type="email" placeholder="Your Mail" id="mail" ></input>

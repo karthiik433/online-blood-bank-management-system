@@ -1,5 +1,6 @@
 
-* {
+.page {
+    padding-bottom: 200px;
     background-image: url("https://jnj-content-lab.brightspotcdn.com/dims4/default/0fba69d/2147483647/strip/true/crop/1000x463+0+102/resize/1440x666!/quality/90/?url=http%3A%2F%2Fjnj-brightspot.s3.amazonaws.com%2Fba%2F7a%2F1a1da0404ec2bf8a21e270178fd0%2Fshutterstock-294174608-1-copy.jpg");
     background-size: cover;
     background-attachment: fixed;
@@ -25,10 +26,9 @@ input{
     border-radius: 10px;
     /* margin-right: 100px !important; */
     margin-top: 20px !important;
-    background-color: red;
     
 }
-form {
+.signUpForm {
     display: flex;
     flex-flow: column wrap;
     /* justify-content: space-between; */

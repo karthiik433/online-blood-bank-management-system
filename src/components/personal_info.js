@@ -3,8 +3,8 @@ import "./../styles/style2.css";
 
 function PersonalInfo(){
     return(
-     <div>
-        <form>
+     <div className="personal">
+        <form className="personalForm">
             <label for="fullName"><b>Full Name:</b></label>
             <input type="text" placeholder="Full Name"></input>
             <label for="Gender"><b>Gender:</b></label>

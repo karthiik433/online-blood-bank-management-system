@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import PersonalInfo from "./personal_info";
 import SignUp from "./signup";
+import HomePage from "./home page";
 
 
 function App() {
@@ -10,10 +11,11 @@ function App() {
         setSignUp(true);
     }
     return (
-        <div className="container">
-            {signup ? 
+        <div className="container-fluid">
+            <HomePage />
+            {/* {signup ? 
             <PersonalInfo /> 
-            : <SignUp signUpHandler={signUpHandler} />}
+            : <SignUp signUpHandler={signUpHandler} />} */}
         </div>
     );
 }
