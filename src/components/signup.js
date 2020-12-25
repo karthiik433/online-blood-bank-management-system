@@ -11,7 +11,7 @@ function SignUp(props){
             <input type="email" placeholder="Your Mail" id="mail" ></input>
             <input type ="text" placeholder="Set Password" className="rightSideInputs" id="password"></input>
             <button type="button"className="btn btn-success" id="logIn" onClick={props.signUpHandler}><b>Log In</b></button>
-            <button type="button" className="btn btn-warning" id="signUp" ><b>Sign Up</b></button>
+            <button type="button" className="btn btn-warning" id="signUp" onClick={props.signUpHandler} ><b>Sign Up</b></button>
         </form>
         </div>
     );

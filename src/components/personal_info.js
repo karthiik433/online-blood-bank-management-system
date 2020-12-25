@@ -1,22 +1,72 @@
-import React,{Component} from "react";
+import React,{Component, useEffect, useState} from "react";
 import "./../styles/style2.css";
+import {useForm} from "react-hook-form";
 
 function PersonalInfo(){
+
+      const {register,handleSubmit} = useForm();
+      let [response,Setresponse] = useState(null);
+      let [buttonDisable,setDisable] =useState(false);
+
+    const sendData = (data)=>{
+        console.log(data);
+
+        document.getElementById("infoFullName").value="";
+        document.getElementById("password").value="";
+        //document.getElementById("gender").value="";
+        document.getElementById("DateOfBirth").value="";
+        document.getElementById("bloodGroup").value="";
+        document.getElementById("mobileNo").value="";
+        document.getElementById("alternateMobile").value="";
+        document.getElementById("email").value="";
+        //document.getElementById("district").value="";
+        document.getElementById("address").value="";
+         
+        if(data.fullName ==="" || data.password ==="" || data.gender ==="" || data.date ==="" || data.bloodGrp ==="" || data.mobile ==="" || data.state=="" || data.district ==="" || data.address ===""){
+            document.getElementById("errorFilling").innerText="Please Fill all the details";
+            document.getElementById("errorFilling").style.color="red";
+            return;
+        }
+        document.getElementById("errorFilling").innerText="";
+        setDisable(true);
+        
+        var myHeaders = new Headers();
+        myHeaders.append("x-username", "kartheek");
+        myHeaders.append("x-password", "karthik433");
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({"fullName":data.fullName,"password":data.password,"gender":data.gender,"dateOfBirth":data.date,"bloodGroup":data.bloodGrp,"mobile":Number(data.mobile),"alternateMobile":Number(data.alternate),"email":data.email,"state":data.state,"district":data.district,"address":data.address});
+
+        var requestOptions = {
+         method: 'POST',
+         headers: myHeaders,
+         body: raw,
+          redirect: 'follow'
+        };
+
+        fetch("http://localhost:9999/donorRegistration", requestOptions)
+         .then(response => response.json())
+         .then(result => Setresponse(result))
+         .catch(error => console.log('error', error));
+          }
+
     return(
      <div className="personal">
         <form className="personalForm">
             <label for="fullName"><b>Full Name:</b></label>
-            <input type="text" placeholder="Full Name"></input>
+            <input type="text" id="infoFullName" name="fullName" placeholder="Full Name" ref={register}></input>
+            <label>Enter Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter Password" ref={register} ></input>
             <label for="Gender"><b>Gender:</b></label>
-            <select name="gender" id="gender">
+            <select name="gender" name="gender" id="gender" ref={register}>
                 <option value="Male">Male</option>
                 <option value="Female" checked>Female</option>
                 <option value="Other">Other</option>
             </select>
             <label for="date"><b>Date Of Birth:</b></label>
-            <input type="date" id="DateOfBirth"></input>
+            <input type="date" name="date" id="DateOfBirth" ref={register}></input>
             <label  for="bloodGroup"><b>Blood Group:</b></label>
-            <select>
+            <select id="bloodGroup" name="bloodGrp" ref={register}>
                 <option value="O+">O+</option>
                 <option value="O-">O-</option>
                 <option value="A+">A+</option>
@@ -27,20 +77,19 @@ function PersonalInfo(){
                 <option value="AB-">AB-</option>
             </select>
             <label for="mobileNo"><b>Mobile No:</b></label>
-            <input type="number" placeholder="Enter mobile number"></input>
+            <input type="number" id="mobileNo" name="mobile" placeholder="Enter mobile number" ref={register}></input>
             <label for="alternateMobile"><b>Alternate Mobile No:</b></label>
-            <input type="number" placeholder="Enter mobile number"></input>
+            <input type="number" id="alternateMobile" name="alternate" placeholder="Enter mobile number" ref={register}></input>
             <label for="email"><b>Email:</b></label>
-            <input type="email" placeholder="Enter your mail address"></input>
-            <label for="state"><b>State:</b></label>
-            <select>
+            <input type="email" id="email" name="email" placeholder="Enter your mail address" ref={register}></input>
+            <label>State:</label>
+            <select name="state" ref={register}>
                 <option value="Andhra Pradesh">Andhra Pradesh</option>
-                <option value="Telangana">Telangana</option>
             </select>
             <label for="district"><b>District:</b></label>
-            <select>
+            <select id="district" name="district" ref={register}>
                 <option value="Anantapur">Anantapur</option>
-                <option value="Chittor">Chittor</option>
+                <option value="Chittoor">Chittoor</option>
                 <option value="East Godavari">East Godavari</option>
                 <option value="Guntur">Guntur</option>
                 <option value="Kadapa">Kadapa</option>
@@ -52,43 +101,12 @@ function PersonalInfo(){
                 <option value="Vishakapatnam">Vishakapatnam</option>
                 <option value="Vizianagaram">Vizianagaram</option>
                 <option value="West Godavari">West Godavari</option>
-                <option value="Nellore">Adilabad</option>
-                <option value="Nellore">Bhadeadri Kothagudem</option>
-                <option value="Nellore">Hyderabad</option>
-                <option value="Nellore">Jagitial</option>
-                <option value="Nellore">Jangaon</option>
-                <option value="Nellore">Jayashankar Bhupalpally</option>
-                <option value="Nellore">Jogulamba Gadwal</option>
-                <option value="Nellore">Kamareddy</option>
-                <option value="Nellore">Karimnagar</option>
-                <option value="Nellore">Khammam</option>
-                <option value="Nellore">Komaram Bheem</option>
-                <option value="Nellore">Mahabubabad</option>
-                <option value="Nellore">Mahabubnagar</option>
-                <option value="Nellore">Mancherial</option>
-                <option value="Nellore">Medak</option>
-                <option value="Nellore">Medchal Malkajgiri</option>
-                <option value="Nellore">Mulugu</option>
-                <option value="Nellore">Nagarkurnool</option>
-                <option value="Nellore">Narayanpet</option>
-                <option value="Nellore">Nalgonda</option>
-                <option value="Nellore">Nirmal</option>
-                <option value="Nellore">Nizamabad</option>
-                <option value="Nellore">Peddapalli</option>
-                <option value="Nellore">Rajanna Siricilla</option>
-                <option value="Nellore">Ranga Reddy</option>
-                <option value="Nellore">Sangareddy</option>
-                <option value="Nellore">Siddipet</option>
-                <option value="Nellore">Suryapet</option>
-                <option value="Nellore">Vikarabad</option>
-                <option value="Nellore">Wanaparthy</option>
-                <option value="Nellore">Warangal Rural</option>
-                <option value="Nellore">Warangal Urban</option>
-                <option value="Nellore">Yadadri Bhuvanagiri</option>
             </select>
             <label for="address"><b>Address:</b></label>
-            <input type="text"placeholder="Address"></input>
-            <button type="submit" className="btn"><b>Submit</b></button>
+            <input type="text" id="address" name="address" placeholder="Address" ref={register}></input>
+            {response && <h4>{response.message}</h4>}
+            <h4 id="errorFilling"></h4>
+            <button type="button" className="btn" onClick={handleSubmit(sendData)} disabled={buttonDisable} ><b>Submit</b></button>
         </form>
      </div>
     );
