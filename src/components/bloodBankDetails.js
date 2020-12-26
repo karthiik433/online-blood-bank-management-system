@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import { BrowserRouter,Route,Switch,Link } from "react-router-dom";
 
 
 function BloodBankDetails (){
@@ -20,7 +21,8 @@ function BloodBankDetails (){
           method: 'POST',
           headers: myHeaders,
           body: raw,
-          redirect: 'follow'
+          redirect: 'follow',
+          credentials:"include"
         };
         
           fetch("http://localhost:9999/bloodBanksByDistrict", requestOptions)
@@ -71,7 +73,7 @@ function BloodBankDetails (){
                 <option value="West Godavari">West Godavari</option>
             </select>
       {/* Fetch data from API */}
-        <button className="fetch-button" onClick={dataFetch}>
+        <button className="fetch-button btn-success" onClick={dataFetch}>
           Search
         </button>
 
@@ -98,7 +100,6 @@ function BloodBankDetails (){
           })}
       </div>
     </div>
-        
     );
 
 }

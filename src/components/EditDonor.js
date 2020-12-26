@@ -47,7 +47,8 @@ function EditDonor (){
        method: 'PUT',
        headers: myHeaders,
        body: raw,
-       redirect: 'follow'
+       redirect: 'follow',
+       credentials:"include"
          };
 
       fetch("http://localhost:9999/updateDonorDetails", requestOptions)
@@ -72,7 +73,7 @@ function EditDonor (){
          <input type="password" id="newPassword" name="newPassword" placeholder="Enter new Password" ref={register}></input><br></br><br></br>
          <label for="mobile">Enter New Mobile Number:</label>
          <input type="number" id="mobile" name="mobile" placeholder="Enter new Mobile Number" ref={register}></input><br></br><br></br>
-         <label>new Alternate Mobile:</label><br></br><br></br>
+         <label>new Alternate Mobile:</label>
          <input type="number" name="alternate" placeholder="Enter new Alternate Mobile" ref={register}></input><br></br><br></br>
          <label for="email">Enter New Email ID:</label>
          <input type="email" id="email" name="email" placeholder="Enter new Email Id" ref={register}></input><br></br><br></br>

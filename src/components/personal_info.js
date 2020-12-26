@@ -41,7 +41,8 @@ function PersonalInfo(){
          method: 'POST',
          headers: myHeaders,
          body: raw,
-          redirect: 'follow'
+          redirect: 'follow',
+          credentials:"include"
         };
 
         fetch("http://localhost:9999/donorRegistration", requestOptions)

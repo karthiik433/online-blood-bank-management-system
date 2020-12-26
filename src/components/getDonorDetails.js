@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 
 
 function GetDonorDetails () {
@@ -19,7 +19,8 @@ function GetDonorDetails () {
         method: 'POST',
         headers: myHeaders,
          body: raw,
-        redirect: 'follow'
+        redirect: 'follow',
+        credentials:"include"
         };
 
         fetch("http://localhost:9999/donorDetailsByDistrict", requestOptions)
@@ -34,6 +35,10 @@ function GetDonorDetails () {
         console.log(district);
 
     }
+    useEffect(()=>{
+        console.log(district,"hello");
+
+    },[district])
     
     const getBloodGrp = (e)=>{
         setBloodGrp(e.target.value);
@@ -61,6 +66,7 @@ function GetDonorDetails () {
                 <option value="West Godavari">West Godavari</option>
          </select>
          <select onChange={getBloodGrp} id="bloodGroup" name="bloodGrp">
+                <option>select Blood Group</option>
                 <option value="O+">O+</option>
                 <option value="O-">O-</option>
                 <option value="A+">A+</option>

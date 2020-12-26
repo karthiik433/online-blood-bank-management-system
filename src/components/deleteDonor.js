@@ -5,6 +5,7 @@ function DeleteDonor () {
 
      const {register,handleSubmit} = useForm();
      let [message,setMessage] = useState(null);
+     let [disable,setDisable] = useState(false);
  
     const submit = (data)=>{
      let delfullName = data.fullName;
@@ -19,6 +20,8 @@ function DeleteDonor () {
        document.getElementById("delfullName1").value="";
       document.getElementById("delpassword1").value="";
 
+      setDisable(true);
+
       var myHeaders = new Headers();
     myHeaders.append("x-username", "kartheek");
     myHeaders.append("x-password", "karthik433");
@@ -30,7 +33,8 @@ function DeleteDonor () {
     method: 'DELETE',
     headers: myHeaders,
     body: raw,
-    redirect: 'follow'
+    redirect: 'follow',
+    credentials:"include"
         };
 
     fetch("http://localhost:9999/deleteDonor", requestOptions)
@@ -48,7 +52,7 @@ function DeleteDonor () {
         <label>Password:</label>
         <input type="password" id="delpassword1" name="password" placeholder="Please Enter Password" ref={register} ></input><br></br><br></br>
         <h1 id="err"></h1>
-        <button type="buttom" onClick={handleSubmit(submit)}>Submit</button>
+        <button type="buttom" onClick={handleSubmit(submit)} disabled={disable}>Submit</button>
         {message && <h2>{message.message}</h2>}
         </>
     );
