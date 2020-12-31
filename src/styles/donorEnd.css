@@ -1,0 +1,19 @@
+
+.endDonor {
+    margin-top: 100px;
+    color:blanchedalmond;
+    background-color: green;
+    width: 100%;
+    height: 150px;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.dbtn {
+    margin-left: 600px;
+    padding: 10px;
+}
+
+.dtbn:onhover {
+    color : red;
+}

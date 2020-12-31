@@ -1,36 +1,58 @@
 import React,{useState} from "react";
 import { Redirect } from "react-router";
 import {useForm} from "react-hook-form";
+import "./../styles/editDonor.css";
 
 
 
-function EditDonor (){
+function EditDonor (props){
 
    let [displayDetails,setDisplayDetails] = useState(null);
    const {register,handleSubmit} = useForm();
 
     //setFullName("karth");
+    console.log(props.fullName,"edit");
     
 
     const sumbit =(data)=>{
-        const fullName = document.getElementById("fullName").value;
-        const password = document.getElementById("password").value;
-        if(fullName.trim() ==="" || password.trim() ==="" ){
-            document.getElementById("error").innerText="Please Enter fullName or Password";
-            document.getElementById("error").style.color="red";
-            return;
-        }else{
-            document.getElementById("error").innerText="";
-        }
-       
-        document.getElementById("fullName").value = "";
-        document.getElementById("password").value = "";
-        document.getElementById("newName").value = "";
-        document.getElementById("newPassword").value = "";
+        
         document.getElementById("mobile").value = "";
         document.getElementById("email").value = "";
         document.getElementById("district").value = "";
         document.getElementById("address").value = "";
+       
+        if(data.mobile !=="" ){
+          console.log((data.mobile),"data");
+          if(data.mobile.length !==10){
+            document.getElementById("error").innerHTML="Please Enter Valid Mobile Number";
+            document.getElementById("error").style.color="red";
+            return;
+          }
+          
+        }
+
+        if(data.alternate !==""){
+          if(data.alternate.length !==10){
+            document.getElementById("error").value="Please Enter Valid Alternate Mobile Number";
+            document.getElementById("error").style.color="red";
+            return;
+          }
+          
+        }
+
+        if(data.email !== "" ){
+          let mail = data.email;
+          console.log(mail,"mail");
+          let mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            if(mail.match(mailformat)){
+                //alert("correct mail format");
+                console.log("correct mail format");    
+            }else{
+               alert("incorrect mail format,please re-enter");
+               return;
+            }
+        }
+
         const button = document.getElementById("button");
         button.setAttribute("disabled",true);
         //console.log(fullName1,password1);
@@ -41,7 +63,7 @@ function EditDonor (){
         myHeaders.append("x-password", "karthik433");
         myHeaders.append("Content-Type", "application/json");
 
-       var raw = JSON.stringify({"fullName":data.fullName,"password":data.password,"newName":data.newName,"newpassword":data.newPassword,"mobile":Number(data.mobile),"alternateMobile":Number(data.alternate),"email":data.email,"district":data.district,"address":data.address});
+       var raw = JSON.stringify({fullName:props.fullName, "mobile":Number(data.mobile),"alternateMobile":Number(data.alternate),"email":data.email,"district":data.district,"address":data.address});
 
        var requestOptions = {
        method: 'PUT',
@@ -59,26 +81,19 @@ function EditDonor (){
     }
 
     return(
-     <>
-     <h1>Welcome</h1>
-     <p>Edit Your Details</p>
-     <form>
-         <label for="fullName">Enter Full Name:</label>
-         <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" ref={register} required></input><br></br><br></br>
-         <label for="password" >Enter password:</label>
-         <input type="password" id="password" name="password" placeholder="Please Enter Your Password" ref={register} required></input><br></br><br></br>
-         <label for="newName">Enter New Name:</label>
-         <input type="text" id="newName" name="newName" placeholder="Enter new Name" ref={register} ></input><br></br><br></br>
-         <label for="newPassword">Enter New password:</label>
-         <input type="password" id="newPassword" name="newPassword" placeholder="Enter new Password" ref={register}></input><br></br><br></br>
+     <div className="editDonor">
+     <h1 className="head">Welcome</h1>
+     <p className="para"> Please Edit Your Details</p>
+     <form className="EditDonorForm">
+  
          <label for="mobile">Enter New Mobile Number:</label>
-         <input type="number" id="mobile" name="mobile" placeholder="Enter new Mobile Number" ref={register}></input><br></br><br></br>
+         <input type="number" className="editDonorInput" id="mobile" name="mobile" placeholder="Enter new Mobile Number" ref={register}></input><br></br><br></br>
          <label>new Alternate Mobile:</label>
-         <input type="number" name="alternate" placeholder="Enter new Alternate Mobile" ref={register}></input><br></br><br></br>
+         <input type="number" className="editDonorInput" name="alternate" placeholder="Enter new Alternate Mobile" ref={register}></input><br></br><br></br>
          <label for="email">Enter New Email ID:</label>
-         <input type="email" id="email" name="email" placeholder="Enter new Email Id" ref={register}></input><br></br><br></br>
+         <input type="email" className="editDonorInput" id="email" name="email" placeholder="Enter new Email Id" ref={register}></input><br></br><br></br>
          <label for="district">Select District:</label>
-         <select id="district" name="district" ref={register}>
+         <select id="district" className="editDonorInput" name="district" ref={register}>
          <option value="">Select District</option>
                 <option value="Anantapur">Anantapur</option>
                 <option value="Chittoor">Chittoor</option>
@@ -95,9 +110,9 @@ function EditDonor (){
                 <option value="West Godavari">West Godavari</option>
          </select><br></br><br></br>
          <label for="address">Enter New Address:</label>
-         <input type="text" id="address" name="address" placeholder="Enter new Address" ref={register}></input><br></br><br></br>
+         <input type="text" className="editDonorInput" id="address" name="address" placeholder="Enter new Address" ref={register}></input><br></br><br></br>
          <h4 id="error"></h4>
-         <button type="button" id="button" onClick={handleSubmit(sumbit)} disabled={false}>Submit</button>
+         <button type="button" className="btn-success" id="button" onClick={handleSubmit(sumbit)} disabled={false}>Submit</button>
      </form>
      
 
@@ -105,19 +120,21 @@ function EditDonor (){
     <>
     {displayDetails.message?<p>message:{displayDetails.message}</p>:
     <>
-    <h3>Updated Details:</h3>
-    <p>fullName:{displayDetails.fullName}</p>
-    <p>password::{displayDetails.password}</p>
-    <p>mobile:{displayDetails.mobile}</p>
-    <p>alternateMobile:{displayDetails.alternateMobile}</p>
-    <p>email:{displayDetails.email}</p>
-    <p>district:{displayDetails.district}</p>
-    <p>address:{displayDetails.address}</p>
+    <div className="updateDetails">
+    <h3>Your Details:</h3>
+    <p>FullName: {displayDetails.fullName}</p>
+    {/* <p>password::{displayDetails.password}</p> */}
+    <p>Mobile: {displayDetails.mobile}</p>
+    <p>Alternate Mobile: {displayDetails.alternateMobile}</p>
+    <p>Email: {displayDetails.email}</p>
+    <p>District: {displayDetails.district}</p>
+    <p>Address: {displayDetails.address}</p>
+    </div>
     </>
     }
     </>:<h2>Please Update details</h2>}
 
-     </>
+     </div>
      
     );
 }

@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import "./../styles/getBloodBank.css"
 import { BrowserRouter,Route,Switch,Link } from "react-router-dom";
 
 
@@ -53,7 +54,31 @@ function BloodBankDetails (){
     }
      
     return(
-        <div className="App">
+
+        <>
+        {data ?
+         <div className="books">
+         { data &&
+           data.map((item, index) => {
+             //const cleanedDate = item.BloodBankName;
+             const authors = item.BloodBankName;
+ 
+             return (
+               <div className="item" key={index} >
+                 <h3 style={{textDecoration:"underline",color:"red"}}>Address {index + 1}</h3>
+                 <h2>{item.name}</h2>
+ 
+                 <div className="details" >
+                   <p>Blood Bank Name: {authors}</p>
+                   <p>District: {item.District}</p>
+                   <p>Address: {item.Address}</p>
+             <p>Contact Number: {item.ContactNumber?<span>{item.ContactNumber}</span>:<span>No Contact Number Available</span>}</p>
+                 </div>
+               </div>
+             );
+           })}
+       </div> :
+       <div className="getBloodBank">
       <h1>Search for the Blood Banks in your district</h1>
       <h2>Select the district</h2>
       <select onChange={getDistrict}>
@@ -78,28 +103,11 @@ function BloodBankDetails (){
         </button>
 
       {/* Display data from API */}
-      <div className="books">
-        { data &&
-          data.map((item, index) => {
-            //const cleanedDate = item.BloodBankName;
-            const authors = item.BloodBankName;
-
-            return (
-              <div className="item" key={index} >
-                <h3>Address {index + 1}</h3>
-                <h2>{item.name}</h2>
-
-                <div className="details" >
-                  <p>Blood Bank Name: {authors}</p>
-                  <p>District: {item.District}</p>
-                  <p>Address: {item.Address}</p>
-            <p>Contact Number: {item.ContactNumber?<span>{item.ContactNumber}</span>:<span>No Contact Number Available</span>}</p>
-                </div>
-              </div>
-            );
-          })}
-      </div>
+     
     </div>
+    }
+        </>
+        
     );
 
 }

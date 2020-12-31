@@ -8,7 +8,9 @@ import BloodBankDetails from "./bloodBankDetails";
 import EditDonor from "./EditDonor"
 import DeleteDonor from "./deleteDonor";
 import GetDonorDetails from "./getDonorDetails";
-//import Dummy from "./dummy";
+import EndOfRegister from "./donorRegisterEnd";
+import Footer from "./footer";
+import Dummy from "./dummy";
 
 
 function App() {
@@ -109,6 +111,8 @@ function App() {
                 ssfhdsfhkjhbf
             </div> */}
 
+            
+         
         {signup?<HomePage UserName={UserName} logoutHandler={logoutHandler} donorOrNot={donorOrNot}/>:<SignUp signUpHandler={signUpHandler} loginHandler={loginHandler} error={error}  />}
         
         {/* <ul>

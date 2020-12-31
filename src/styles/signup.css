@@ -1,6 +1,6 @@
 
 .page {
-    padding-bottom: 200px;
+    padding-bottom: 350px;
     background-image: url("https://jnj-content-lab.brightspotcdn.com/dims4/default/0fba69d/2147483647/strip/true/crop/1000x463+0+102/resize/1440x666!/quality/90/?url=http%3A%2F%2Fjnj-brightspot.s3.amazonaws.com%2Fba%2F7a%2F1a1da0404ec2bf8a21e270178fd0%2Fshutterstock-294174608-1-copy.jpg");
     background-size: cover;
     background-attachment: fixed;
@@ -13,18 +13,20 @@
 
 
 
-.btn {
+#logIn,#signUp {
     padding: 5px 20px;
     background-color: rgb(255, 196, 0);
     border-radius: 10px;
-    margin-right: 70px !important;
+    margin-right: 170px !important;
     margin-top: 20px !important;
 }
 
-input{
+.inputSignUp{
     padding: 20px;
     border-radius: 10px;
     /* margin-right: 100px !important; */
+    margin-bottom: 30px !important;
+    margin-right: 100px !important ;
     margin-top: 20px !important;
     
 }
@@ -34,6 +36,10 @@ input{
     /* justify-content: space-between; */
     align-items: flex-end;
     
+}
+ 
+#err {
+    margin-right: 100px;
 }
 
 

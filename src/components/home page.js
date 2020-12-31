@@ -11,6 +11,7 @@ import BloodBankDetails from "./bloodBankDetails";
 import GetDonorDetails from "./getDonorDetails";
 //import Dummy from "./dummy";
 //import "./../styles/homePage.css";
+import Footer from "./footer";
 
 
 function HomePage (props){
@@ -18,8 +19,9 @@ function HomePage (props){
   const [donorRegister,setDonorRegister] = useState(false);
   const [renderRecipient,setRenderRecipient] = useState(false);
   let [renderDonorOrNot,setRender] = useState(undefined);
+  let [username,setUserName] = useState(props.UserName);
 
-  console.log(props.donorOrNot,"donorOrNot");
+  console.log(props.donorOrNot,"donorOrNot",props.UserName);
 
   const setBloodBank = () =>{
     if(renderBloodBank){
@@ -56,15 +58,16 @@ function HomePage (props){
     </div>
   </div>
 </nav>
+
 </div>
  {/* <li><Link to="/dummy">Dummy</Link> </li>
  <li><Link to="updateDonor">Delete Donor</Link> </li> */}
 <Switch>
   <Route exact path="/bloodBanksByDistrict"><BloodBankDetails/></Route>
-  <Route exact path="/donorRegistration"><PersonalInfo/></Route>
+  <Route exact path="/donorRegistration"><PersonalInfo fullName={props.UserName}/></Route>
   <Route exact path="/donorDetails"><GetDonorDetails/></Route>
-  <Route exact path="/updateDonorDetails"><EditDonor/></Route>
-  <Route exact path="/deleteDonor"><DeleteDonor/></Route>
+  <Route exact path="/updateDonorDetails"><EditDonor fullName={props.UserName}/></Route>
+  <Route exact path="/deleteDonor"><DeleteDonor username={props.UserName}/></Route>
   <Route exact path="/">{
 
     props.donorOrNot?
@@ -76,9 +79,50 @@ function HomePage (props){
                     This portal is dedicated to information on Blood Transfusion Services and Resources.The main policy formulating apex body in relation to all matters pertaining to operation of blood centers.The SBTC is the central body that coordinated with the State Blood Transfusion Councils(SBTCs) and also ensures involvment of other health programmes for various activities related to Blood Transfusion Services(BTS).
                 </p>
             </div>
-         <h1 style={{color:"red",textAlign:"center"}}>Welcome {props.UserName}</h1>
-            <div className="row row-cols-1 row-cols-md-2 g-4 cardSet">
-    <div>
+         <h1 style={{color:"black",textAlign:"center"}}>Welcome {props.UserName}</h1>
+
+         <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
+  <ol className="carousel-indicators">
+    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active"></li>
+    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
+    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
+  </ol>
+  <div className="carousel-inner">
+    <div className="carousel-item active">
+      <img src="https://vistapointe.net/images/blood-donation-wallpaper-15.jpg"  width="1500px" height="470px" alt="..."></img>
+      <div className="carousel-caption d-none d-md-block">
+        
+      </div>
+      
+    </div>
+    <div className="carousel-item">
+      <img src="https://vistapointe.net/images/blood-donation-6.jpg"  width="1500px" height="470px" alt="..."></img>
+      <div className="carousel-caption d-none d-md-block">
+        
+      </div>
+    </div>
+    <div className="carousel-item">
+      <img src="https://vistapointe.net/images/blood-donation-wallpaper-4.jpg"  width="1500px" height="470px" alt="..."></img>
+      <div className="carousel-caption d-none d-md-block">
+        
+      </div>
+    </div>
+  </div>
+  <br></br>
+  <br></br>
+  <a className="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
+    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
+    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Next</span>
+  </a>
+</div>
+
+         
+        
+    <div className="cardFlex">
   <div className="col cardCss">
     <div className="card innerCard">
       <img src="data:image/jpeg;base64,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
@@ -86,7 +130,7 @@ function HomePage (props){
       <div className="card-body">
         <h5 className="card-title">Blood Bank</h5>
         <p className="card-text">Find the blood banks and blood availability across the state</p>
-        <Link to="/bloodBanksByDistrict" className="btn btn-primary">Click to check out nearby blood banks</Link>
+        <Link to="/bloodBanksByDistrict" className="btn btn-warning">Click to check out nearby blood banks</Link>
         {/* <a className="btn btn-primary" onClick={props.setBloodBank} >Click to check out nearby blood banks</a> */}
       </div>
     </div>
@@ -96,9 +140,9 @@ function HomePage (props){
     <div className="card innerCard">
       <img src="data:image/png;base64,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" className="card-img-top" alt="..." className="image"></img>
       <div className="card-body">
-        <h5 className="card-title">Receive blood</h5>
+        <h5 className="card-title">Search for Donors</h5>
         <p className="card-text">Get immediate access to the blood banks and blood donors.</p>
-        <Link to="/donorDetails" className="btn btn-primary" >Click here to receive blood from donors in your district</Link>
+        <Link to="/donorDetails" className="btn btn-success" >Click here to receive blood from donors in your district</Link>
         {/* <a href="#" className="btn btn-primary">Click here to receive blood</a> */}
       </div>
     </div>
@@ -110,7 +154,7 @@ function HomePage (props){
       <div className="card-body">
         <h5 className="card-title">Update Donor Details</h5>
         <p>If you are a donor you can update your details here</p>
-        <Link to="/updateDonorDetails" className="card-text" className="btn btn-primary">Click here to Update Details</Link>
+        <Link to="/updateDonorDetails" className="card-text" className="btn btn-danger">Click here to Update Details</Link>
         {/* <a href="#" className="btn btn-primary">Click here to schedule blood donation</a> */}
       </div>
     </div>
@@ -130,8 +174,8 @@ function HomePage (props){
   </div>
 
   <div>
-  <div>
-      <h3>Eligibility Requirements</h3>
+  <div className="text">
+      <h3 style={{color:"white"}}>Eligibility Requirements</h3>
       <ul>
           <li>Donor should be in the age group of 18 to 65 years</li>
           <li>The donor should not be less than 45 kilograms</li>
@@ -149,10 +193,10 @@ function HomePage (props){
           <li>Should not have had any history of Genital ulcers/Discharge, History of Multiple Sexual partners and Drug Addiction</li>
           <li>Should not be a diabetes patient treated with insulin injections</li>
           <li>You cannot give blood if injected intravenously,even once</li>
-          <li><b>Note:</b>Confirmation of your eligibilty of donate blood is done by professionals attached with blood banks.If you find you are eligible to donate based on the information displayed here,we encourage you to register as a donor and fix an appointment with blood bank nearest to you to donate Blood</li>
+          <li><b style={{color:"yellow"}}>Note:</b>Confirmation of your eligibilty of donate blood is done by professionals attached with blood banks.If you find you are eligible to donate based on the information displayed here,we encourage you to register as a donor and fix an appointment with blood bank nearest to you to donate Blood</li>
 
       </ul>
-      <a href=""><h1>FAQs</h1></a>
+      </div>
       <div className="accordion" id="accordionExample">
   <div className="card">
     <div className="card-header" id="headingOne">
@@ -164,8 +208,8 @@ function HomePage (props){
     </div>
 
     <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div className="card-body">
-      <h3>Ensuring Access to Safe Blood.</h3>
+      <div className="card-body aboutus">
+      <h3 style={{color:"red"}}>Ensuring Access to Safe Blood.</h3>
 <p>A well organised Blood Transfusion Service (BTS) is a vital component of any health care delivery system. An integrated strategy for Blood Safety is required for elimination of transfusion transmitted infections and for provision of safe and adequate blood transfusion services to the people.The main component of an integrated strategy include collection of blood only from voluntary, non-remunerated blood donors, screening for all transfusion transmitted infections and reduction of unnecessary transfusion.</p>
 
 <p>The Blood Transfusion Service in the country is highly decentralised and lacks many vital resources like manpower, adequate infrastructure and financial base. The main issue, which plagues blood banking system in the country, is fragmented management. The standards vary from state to state, cities to cities and centre to centre in the same city. In spite of hospital based system, many large hospitals and nursing homes do not have their own blood banks and this has led to proliferation of stand-alone private blood banks.</p>
@@ -186,29 +230,28 @@ function HomePage (props){
       </h2>
     </div>
     <div id="collapseTwo" className="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
-      <div className="card-body">
+      <div className="card-body contactus">
           <div>
-              <h4>Address:</h4>
+              <h4 style={{color:"blue"}}>Address:</h4>
               <span>23-170</span><br></br>
               <span>Sai Nagar</span><br></br>
               <span>Dharmavaram</span><br></br>
               <span>Anantapur Pincode:515671</span>
           </div>
           <div>
-              <span><h4>Call us at:</h4></span>
+              <span><h4 style={{color:"blue"}}>Call us at:</h4></span>
               <span>93981***56,8790****04</span>
           </div>
           <div>
-              <span><h4>Write us at:</h4></span>
+              <span><h4 style={{color:"blue"}}>Write us at:</h4></span>
               <span>karthik12345kumar@gmail.com</span>
           </div>
        </div>
      </div>
    </div>
  </div>
-   </div>
   </div>
- </div>
+  <Footer/>
 </div>
     </>:
     <>
@@ -219,50 +262,88 @@ function HomePage (props){
                     This portal is dedicated to information on Blood Transfusion Services and Resources.The main policy formulating apex body in relation to all matters pertaining to operation of blood centers.The SBTC is the central body that coordinated with the State Blood Transfusion Councils(SBTCs) and also ensures involvment of other health programmes for various activities related to Blood Transfusion Services(BTS).
                 </p>
             </div>
-         <h1 style={{color:"red",textAlign:"center"}}>Welcome {props.UserName}</h1>
-            <div className="row row-cols-1 row-cols-md-2 g-4 cardSet">
-    <div>
+         <h1 style={{color:"black",textAlign:"center"}}>Welcome {props.UserName}</h1>
+         <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
+  <ol className="carousel-indicators">
+    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active"></li>
+    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
+    <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
+  </ol>
+  <div className="carousel-inner">
+    <div className="carousel-item active">
+      <img src="https://vistapointe.net/images/blood-donation-wallpaper-15.jpg"  width="1500px" height="470px" alt="..."></img>
+      <div className="carousel-caption d-none d-md-block">
+        
+      </div>
+      
+    </div>
+    <div className="carousel-item">
+      <img src="https://vistapointe.net/images/blood-donation-6.jpg"  width="1500px" height="470px" alt="..."></img>
+      <div className="carousel-caption d-none d-md-block">
+    
+      </div>
+    </div>
+    <div className="carousel-item">
+      <img src="https://vistapointe.net/images/blood-donation-wallpaper-4.jpg"  width="1500px" height="470px" alt="..."></img>
+      <div className="carousel-caption d-none d-md-block">
+
+      </div>
+    </div>
+  </div>
+  <br></br>
+  <br></br>
+  <a className="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
+    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
+    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Next</span>
+  </a>
+</div>
+
+
+    <div className="cardFlex">
   <div className="col cardCss">
     <div className="card innerCard">
       <img src="data:image/jpeg;base64,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
-      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" className="card-img-top" alt="..." className="image"></img>
+      7PWdGOqleacaNoeMzerH1LXs0WN+lyr3Dsbw8Zm9WPqTZonfpcq9zIydmFFFLDKJ5nGGSOUAiOxLHhwBsNmClU0neYztkpRcbljgWI7Lzh4DfSVv2hzdiuJCcuPJ7hvpKbQjYricVnBmbHVVEtQ6aWN0paS1gYWjVY1uFxfwVplFSd50KNqdKCgksDXdjeHjM3qx9Sx2aNu/S5V7h2N4eMzerH1Js0N+lyr3Nlm5mlHR1EdS2aSR0WvZrwwNOswtxsL+EsoR1Xeaq9pdWDg0sTtP248nuG+krdtDn7FcSZmWnDwG+kptCdiuJXeUMwYpZZZTPM0zSSSkBsdgXvLiBcbMVocE3edKFslGKjcsMDH7G8PGZvVj6lGzRlv0uVe4jtHMI/EzerF1Js0N/lyr3N1mdm+2hmfKyR8pfGYiJA0ADXa64tv9qtkFqO9Fa0VnXik1cdvTZaGxzLDhab+5bVU4lJ0eBuWOBAINwcQeRbDSKgBACAxcqOIiktwW8xNj7ljLIzp9pHLErQWyFzrqSCRjLKAOQkEAEoCAm5UkErG2UAchIIBHGyAhJJKkgma2ygCoSCARzrIQQ4kqQTNbZQBUJBAI51kIIRclSCZosoAqEnRZCcTFjvOcBzbeklboZFWr2jYOcszWNugMfKWU4admvPNHA3YDI9rATwC+08gUNpZmcKcpu6KvNDJn/kwgg1kZBuD2suz1VhtYcTfuddf6s5urzoodbtKyJ7d7CQEc92rU5RXmWFQrPOLEZnRRD8VF8XUsdePEy3arysd96qLjUXxdSa8eI3erysPvVRcai+LqTXjxG71eVgc66LjUXxdSa8eI3eryshdnVRn8VF8XUp148SN3q8rJWZ0UQ/FRfF1KNePEndqvKxfvVRcai+LqTXjxG71eVh96qLjUXxdSa8eI3erysDnXRcai+LqTXjxG71eVkJzqoz+Ki+LqU68eJG71eVkrc6KIfiovi6lGvHiTu1XlYv3qouNRfF1Jrx4jd6vKw+9VFxqL4upNePEbvV5WBzrouNRfF1Jrx4jd6vKyE500ZPfUXxdSnXjxI3eryslbnTRD8VF8XUo148Sd3q8rF+9VFxqL4upNePEbvV5WH3qouNRfF1Jrx4jd6vKxHZ2UXGovi6k148Ru9XlZF96aMnvqL4upTrx4kbvV5WStzpoh+Ki+LqUa8eJO71eVi/eqi41F8XUmvHiN3q8rHxZ00JONZE0b5tIfRZqlSjxIdnq8rN5Dn7kxjQ1tZHh/LL6T2q2qrBeZXlZK7d7ibjI+WaequYKiKfV7rc3gubwazdo84WxSTyNFSlOn200bTVUms80Z35dfWVUsr3EtDnNhb4LIQ7tQBwkWJ4SVz6k3J3np7PRVKmor16mkKwNooCEpCoSCAEIGoQKAhIqEggBCBqEDghIISCAChA1CMxwQkEJBABQgahA5CQQkEAEoQNQgzck5TlppWTQuLHxm44CN9juFp2EKYycXeiJ041I6ssi5+ypS/ld6Vc28Th//AD6hV2fWbUlFUyAtO4yPc6CS3aFjiSGX/M3ZbkvvqtUhqv7HVstdVoK7NZnPBayyCEggBCBEIFCEghIIAQgRCBUJBCQQAhAiECoSCEggBCBEIFQkEJBACECIQKhJss3shzVszYYWkkka77XZGzfe873Nv7FlCDk7ka61aNKOtL/0vDsdUX5D6Vc2UTg77V4mzzy7zqPFKyn2TVZ+8R5sl7o856Vzz06yGoSCAChDAIECEggBABQhgECBCQQAgAoQwCBAhIIAQAUIYIECEggBAIUIYqBAhJ6C0Xd4s5yr1LsnnLb3rOvW0qH/2Q==" className="card-img-top img-thumbnail" className="image" alt="..." ></img>
       <div className="card-body">
         <h5 className="card-title">Blood Bank</h5>
         <p className="card-text">Find the blood banks and blood availability across the state</p>
-        <Link to="/bloodBanksByDistrict" className="btn btn-primary" >Click to check out nearby blood banks</Link>
+        <Link to="/bloodBanksByDistrict" className="btn btn-warning" >Click to check out nearby blood banks</Link>
         {/* <a className="btn btn-primary" onClick={props.setBloodBank} >Click to check out nearby blood banks</a> */}
       </div>
     </div>
   </div>
   <div className="col cardCss">
     <div className="card innerCard">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGnWrqTSMv3ni1IrbQRREzVlMgOJ8rZVuM3Q&usqp=CAU" className="card-img-top" alt="..." className="image"></img>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGnWrqTSMv3ni1IrbQRREzVlMgOJ8rZVuM3Q&usqp=CAU" className="card-img-top img-thumbnail" alt="..." className="image"></img>
       <div className="card-body">
         <h5 className="card-title">Register as a Donor</h5>
         <p className="card-text">register as a donor to gain complete information access</p>
-        <Link to="/donorRegistration" className="btn btn-primary" >Click here for registering to donate blood</Link>
+        <Link to="/donorRegistration" className="btn btn-success" >Click here for registering to donate blood</Link>
         {/* <a className="btn btn-primary">Click here for registering to donate blood</a> */}
       </div>
     </div>
   </div>
   <div className="col cardCss">
     <div className="card innerCard">
-      <img src="data:image/png;base64,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" className="card-img-top" alt="..." className="image"></img>
+      <img src="data:image/png;base64,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" className="card-img-top img-thumbnail" alt="..." className="image"></img>
       <div className="card-body">
-        <h5 className="card-title">Receive blood</h5>
+        <h5 className="card-title">Search for Donors</h5>
         <p className="card-text">Get immediate access to the blood banks and blood donors.</p>
-        <Link to="/donorDetails" className="btn btn-primary" >Click here to receive blood from donors in your district</Link>
+        <Link to="/donorDetails" className="btn btn-danger" >Click here to receive blood from donors in your district</Link>
         {/* <a href="#" className="btn btn-primary">Click here to receive blood</a> */}
       </div>
     </div>
   </div>
-
-
   </div>
+  <br></br>
 
+  <div className="text">
   <div>
-  <div>
-      <h3>Eligibility Requirements</h3>
+      <h3 style={{color:"white"}}>Eligibility Requirements for Blood Donation</h3>
       <ul>
           <li>Donor should be in the age group of 18 to 65 years</li>
           <li>The donor should not be less than 45 kilograms</li>
@@ -280,10 +361,9 @@ function HomePage (props){
           <li>Should not have had any history of Genital ulcers/Discharge, History of Multiple Sexual partners and Drug Addiction</li>
           <li>Should not be a diabetes patient treated with insulin injections</li>
           <li>You cannot give blood if injected intravenously,even once</li>
-          <li><b>Note:</b>Confirmation of your eligibilty of donate blood is done by professionals attached with blood banks.If you find you are eligible to donate based on the information displayed here,we encourage you to register as a donor and fix an appointment with blood bank nearest to you to donate Blood</li>
+          <li><b style={{color:"yellow"}}>Note:</b>Confirmation of your eligibilty of donate blood is done by professionals attached with blood banks.If you find you are eligible to donate based on the information displayed here,we encourage you to register as a donor and fix an appointment with blood bank nearest to you to donate Blood</li>
 
       </ul>
-      <a href=""><h1>FAQs</h1></a>
       <div className="accordion" id="accordionExample">
   <div className="card">
     <div className="card-header" id="headingOne">
@@ -295,8 +375,8 @@ function HomePage (props){
     </div>
 
     <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div className="card-body">
-      <h3>Ensuring Access to Safe Blood.</h3>
+      <div className="card-body aboutus">
+      <h3 style={{color:"red"}}>Ensuring Access to Safe Blood.</h3>
 <p>A well organised Blood Transfusion Service (BTS) is a vital component of any health care delivery system. An integrated strategy for Blood Safety is required for elimination of transfusion transmitted infections and for provision of safe and adequate blood transfusion services to the people.The main component of an integrated strategy include collection of blood only from voluntary, non-remunerated blood donors, screening for all transfusion transmitted infections and reduction of unnecessary transfusion.</p>
 
 <p>The Blood Transfusion Service in the country is highly decentralised and lacks many vital resources like manpower, adequate infrastructure and financial base. The main issue, which plagues blood banking system in the country, is fragmented management. The standards vary from state to state, cities to cities and centre to centre in the same city. In spite of hospital based system, many large hospitals and nursing homes do not have their own blood banks and this has led to proliferation of stand-alone private blood banks.</p>
@@ -317,20 +397,20 @@ function HomePage (props){
       </h2>
     </div>
     <div id="collapseTwo" className="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
-      <div className="card-body">
+      <div className="card-body contactus">
           <div>
-              <h4>Address:</h4>
+              <h4 style={{color:"blue"}}>Address:</h4>
               <span>23-170</span><br></br>
               <span>Sai Nagar</span><br></br>
               <span>Dharmavaram</span><br></br>
               <span>Anantapur Pincode:515671</span>
           </div>
           <div>
-              <span><h4>Call us at:</h4></span>
+              <span><h4 style={{color:"blue"}}>Call us at:</h4></span>
               <span>93981***56,8790****04</span>
           </div>
           <div>
-              <span><h4>Write us at:</h4></span>
+              <span><h4 style={{color:"blue"}}>Write us at:</h4></span>
               <span>karthik12345kumar@gmail.com</span>
           </div>
        </div>
@@ -339,7 +419,7 @@ function HomePage (props){
  </div>
    </div>
   </div>
- </div>
+  <Footer/>
 </div>
     
     </>

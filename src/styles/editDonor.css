@@ -1,0 +1,46 @@
+.EditDonorForm {
+    text-align: center;
+    font-weight: 800;
+}
+
+.editDonorInput{
+    margin-left: 15px;
+    width: 250px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.editDonorInput:focus {
+    background-color: rgb(95, 222, 231);
+}
+
+.btn-success {
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+}
+
+.head {
+    text-align: center;
+}
+
+.para {
+    text-align: center;
+    font-weight: 700;
+    color:blue;
+    font-style: italic;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.editDonor {
+    background-image: url(https://vistapointe.net/images/blood-donation-wallpaper-13.jpg);
+    background-repeat: repeat;
+  padding-bottom: 200px;
+    
+    z-index: -1;
+}
+
+.updateDetails {
+    font-weight: 700;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}

@@ -1,5 +1,5 @@
 .image {
-    width: 200px;
+    width: 300px;
     height : 100px;
 }
 /* * {
@@ -14,26 +14,54 @@
     padding-right: 10px;;
 }
 
-.cardCss {
+/* .cardCss {
     width: 400px;
     height: 450px;
     margin-left: 10px;
-}
+} */
 
 .innerCard{
     width: 300px;
-    height: 350px
+    height: 350px;
+    
 }
 
-.cardSet {
+/* .cardSet {
     padding-top:50px;
     padding-left: 150px;
     display: flex;
     align-items: flex-start;
     flex-wrap : wrap;
     background: linear-gradient(to right,#ff1100,#00aeff);
+} */
+
+.cardFlex {
+    display:flex;
+    background: linear-gradient(to right,#9dff00,#00aeff);
+    flex-wrap: wrap;
 }
 
 .contactUs,.aboutUs {
     background-color: black;
+}
+
+.text {
+    background: linear-gradient(to right,#ff1100,#00aeff);
+    font-weight: 700;
+    
+}
+
+
+.dummyHead {
+    visibility: hidden;
+}
+
+.aboutus {
+    background-color: rgb(42, 124, 124);
+    font-weight: 700;
+}
+
+.contactus {
+    background-color: rgb(165, 117, 209);
+    font-weight: 700;
 }

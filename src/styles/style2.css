@@ -1,10 +1,32 @@
 .personal {
-    background-color: yellow;
+
+    background-image: url(http://nbtc.naco.gov.in/assets/slider/img/banner_1517292758.jpg);
+    background-repeat: repeat;
+    z-index: -1;
+    /* background-attachment: fixed; */
+    
+
 }
 
 .personalForm{
     display: flex;
     flex-flow: column wrap;
     align-items: center;
+    padding-left: 550px !important;
+    padding-bottom: 20px;
 
+}
+
+.plabel {
+    font-weight: 1000px;
+    margin-right: 100px ;
+}
+
+#gender,#bloodGroup,#pstate,#district {
+    margin-right: 100px;
+}
+
+.pbtn {
+    margin-right: 100px;
+    border-radius: 10px;
 }

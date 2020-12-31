@@ -1,0 +1,22 @@
+.getDonorBody {
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFGj2a43-15rO1OKf1k9OFNQSkud_m5gUMPQ&usqp=CAU);
+    background-attachment: fixed;
+    background-size: cover;
+    padding-bottom: 500px;
+    z-index: -1;
+}
+
+.getDonorBody {
+    background-color:green;
+}
+
+.donorList {
+    
+    background-color: lawngreen;
+    margin-left: 5px;
+    text-align: center;
+    border: 3px solid black;
+    width:1500px;
+    margin-top: 5px;
+    font-weight: 700;
+}
